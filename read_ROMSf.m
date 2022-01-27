@@ -79,7 +79,7 @@ for cont=file_start:file_end
    
 end
 
-print('Se terminaron de leer y guardar los datos')
+disp('Se terminaron de leer y guardar los datos')
 
 end
 
