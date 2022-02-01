@@ -59,7 +59,7 @@ for cont=file_start:file_end
    u(:,:,:,num)=ncread(file,'u'); %%componente u
 
 
-   v(:,:,:,num)=ncread(file,'u'); %%componente v
+   v(:,:,:,num)=ncread(file,'v'); %%componente v
    
    clc
    
@@ -69,7 +69,7 @@ for cont=file_start:file_end
    if fecha_actual(:,:,num)==datetime(yy,12,31,18,00,00)
      
      fileg=strcat(rutag,'/SalidaROMS',num2str(yy));
-     save(fileg,'ssh','temp','salt','u','v','-v7.3')
+     save(fileg,'ssh','temp','salt','fecha_actual','u','v','-v7.3')
    
      clear ssh temp salt u v
      num=0;
