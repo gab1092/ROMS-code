@@ -1,6 +1,6 @@
 
-##  Codigo en proceso.
-##Depende del codigo de mapeo objetivo de barnes: Original, 10-Aug-09, S. Pierce, % Bug fix, 8-Sep-10, Carlos Carrillo 
+%% Codigo en proceso.
+%%Depende del codigo de mapeo objetivo de barnes: Original, 10-Aug-09, S. Pierce, % Bug fix, 8-Sep-10, Carlos Carrillo 
 
 cd (ruta_modeloglobal)
 
