@@ -1,24 +1,24 @@
 clear all
-%%%EsTe código es el primero de dos para generar datos de frontera para el modelo ROMS a partir de datos de modelos 
+%%%Este código es el primero de dos para generar datos de frontera para el modelo ROMS a partir de datos de modelos 
 %%globales del copernicus marine service (https://marine.copernicus.eu/es). Los datos ya deben estar descargados.
 %%Este primer paso interpola de la malla del modelo global (lon, lat) a la malla del modelo ROMS (lon,lat). 
 %%Por el momento considera que existe un archivo netcdf por mes del modelo global. Es decir procesa uin netcdf por mes.
 %%*Trabajndo en generalizar el código*
 %%Después se usa el script FronterasFisicas_2.m
-%%Este scrpit se corre y está probado en Matlab.
+%%Este scrpit se corre en Matlab.
 %%Elaborado por: Gabriela Reséndiz C. contacto: resendizg@cicese.edu.mx
 %%Si detectas alguna falla o tienes alguna mejora no dudes en hacermelo saber :)
 
 
 ruta_modeloglobal=input('Ruta de los archivos del modelo global: ')
 ruta_modeloROMS=input('Ruta de la malla del ROMS: ')
-malla=input('Nombre de la malla del ROMS:)
-X1=input('Longitud min:')
-X2=input('Longitud max:')
-Y1=input('Latitud min:')
-Y2=input('Latitud max:')
+malla=input('Nombre de la malla del ROMS: ')
+modelo=input('Nombre del modelo para guardar las fronteras: ')
+X1=input('Longitud min: ')
+X2=input('Longitud max: ')
+Y1=input('Latitud min: ')
+Y2=input('Latitud max: ')
 cd (ruta_modeloglobal)
-
 anioinicial=input('Año inicial: ');
 aniofinal=input('Año final: ');
 
@@ -166,7 +166,7 @@ for nn=1:length(UU(1,1,:,1))
 end
 end
 
-File=strcat('FronterasMFRegNGC_',num2str(contii));
+File=strcat('Fronteras',modelo,num2str(contii));
 
 save (File,'SS','VV','UU','TT','zeta','hg','Ucurr','Vcurr','-v7.3')
 
