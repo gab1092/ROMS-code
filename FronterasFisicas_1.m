@@ -1,6 +1,19 @@
-
-cd '/media/gabriela/WDBlue_2/Modelo_NGC/DATOS_MODELOFISICO'
 clear all
+%%%Ese código es el primero de dos para generar datos de frontera para el modelo ROMS a partir de datos de modelos 
+%%globales del copernicus marine service (https://marine.copernicus.eu/es). Los datos ya deben estar descargados.
+%%  Este primer paso interpola de la malla del modelo global (lon, lat) a la malla del modelo ROMS (lon,lat). 
+%%Después se usa el script FronterasFisicas_2.m
+%%Este scrpit se corre y está probado en Matlab.
+%%Elaborado por: Gabriela Reséndiz C. contacto: resendizg@cicese.edu.mx
+%%Si detectas alguna falla o tienes alguna mejora no dudes en hacermelo saber :)
+
+ruta_modeloglobal=input('Ruta de los archivos del modelo global: ');
+ruta_modeloROMS=input('Ruta de la malla del ROMS: ');
+X1=input('Longitud min:')
+X2=input('Longitud max:')
+Y1=input('Latitud min:')
+Y2=input('Latitud max:')
+cd (ruta_modeloglobal)
 
 anioinicial=input('Año inicial: ');
 aniofinal=input('Año final: ');
@@ -16,12 +29,12 @@ Archivo1=1;
 Archivo2=12;  %%numero de meses, archivos por anio
 
 
-addpath ('/media/gabriela/DATOS_RESENDIZ1/MODELO_ALTOGOLFO')
+addpath (ruta_modeloROMS)
 
-angle=ncread('ROMS_ETOPO1_Regional.nc','angle');
-lon_rho=ncread('ROMS_ETOPO1_Regional.nc','lon_rho');
-lat_rho=ncread('ROMS_ETOPO1_Regional.nc','lat_rho');
-mask_rho=ncread('ROMS_ETOPO1_Regional.nc','mask_rho');
+angle=ncread(malla,'angle');
+lon_rho=ncread(malla,'lon_rho');
+lat_rho=ncread(malla,'lat_rho');
+mask_rho=ncread(malla,'mask_rho');
 I=find(mask_rho==0);mask_rho(I)=NaN;clear I
 
 %%Datos del modelo global
@@ -40,8 +53,10 @@ clear S1 N1 anioo1
 %%Vamos a buscar los indices para recortar los datos del global a un area
 %%mas acorde con el local
 
-Ix=find(lon>=-115 & lon<=-112.5);
-Iy=find(lat>=29 & lat<=32);
+
+
+Ix=find(lon>=X1 & lon<=Y2);
+Iy=find(lat>=Y1 & lat<=Y2);
 
 [lon1,lat1]=meshgrid(lon(Ix),lat(Iy));
 lon1=lon1'; lat1=lat1';
@@ -159,24 +174,6 @@ end
 disp(strcat('Se termino interpolacion de los años: ',num2str(anioinicial),'-', num2str(aniofinal), ' se genero un archivo por año'))
 
 
-
-
-% 
-% clear Ad Adr angle Archivo1 Archivo2 auz bar cc contador Coordenadas_modelo j jj lat lat1 lon lon1 N Netcdf nn Nombrefile s S so t thetao tiempo u uo v vo z zos
-
-% figure
-% pcolor(lon_rho,lat_rho,no3(:,:,62,15))
-% shading flat;grid;axis image;colormap('jet'); colorbar
-% title('Interpolacion muestra, t=15')
-% 
-% 
-% 
-% figure
-% pcolor(lon1,lat1,NO3(:,:,62,15))
-% shading flat;grid;axis image;colormap('jet'); colorbar
-% title('Original muestra, t=15')
-% 
-% I=find((isnan(no3))==1); 
 
 
 
