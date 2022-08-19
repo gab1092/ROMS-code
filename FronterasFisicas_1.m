@@ -2,10 +2,13 @@ clear all
 %%%EsTe código es el primero de dos para generar datos de frontera para el modelo ROMS a partir de datos de modelos 
 %%globales del copernicus marine service (https://marine.copernicus.eu/es). Los datos ya deben estar descargados.
 %%Este primer paso interpola de la malla del modelo global (lon, lat) a la malla del modelo ROMS (lon,lat). 
+%%Por el momento considera que existe un archivo netcdf por mes del modelo global. Es decir procesa uin netcdf por mes.
+%%*Trabajndo en generalizar el código*
 %%Después se usa el script FronterasFisicas_2.m
 %%Este scrpit se corre y está probado en Matlab.
 %%Elaborado por: Gabriela Reséndiz C. contacto: resendizg@cicese.edu.mx
 %%Si detectas alguna falla o tienes alguna mejora no dudes en hacermelo saber :)
+
 
 ruta_modeloglobal=input('Ruta de los archivos del modelo global: ');
 ruta_modeloROMS=input('Ruta de la malla del ROMS: ');
@@ -98,11 +101,11 @@ for cc=Archivo1:Archivo2
     thetao=ncread(Netcdf,'thetao');
     thetao=thetao(Ix,Iy,:,:);
     
-    for tiempo=1:length(uo(1,1,1,:))   %%Tiempo 12xanio
+    for tiempo=1:length(uo(1,1,1,:))   %%
         
         contador=contador+1;
         
-        for jj=1:31 %Numero de niveles del Modelo fisico depende hasta que nivel hay datos
+        for jj=1:length(uo(1,1,:,1)) %Numero de niveles del Modelo fisico depende hasta que nivel hay datos
             
             %%%%%%%%Salt%%%%%%%%%%%%
             s=squeeze(so(:,:,jj,tiempo));
