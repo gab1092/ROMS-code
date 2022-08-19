@@ -1,7 +1,7 @@
 clear all
-%%%Ese código es el primero de dos para generar datos de frontera para el modelo ROMS a partir de datos de modelos 
+%%%EsTe código es el primero de dos para generar datos de frontera para el modelo ROMS a partir de datos de modelos 
 %%globales del copernicus marine service (https://marine.copernicus.eu/es). Los datos ya deben estar descargados.
-%%  Este primer paso interpola de la malla del modelo global (lon, lat) a la malla del modelo ROMS (lon,lat). 
+%%Este primer paso interpola de la malla del modelo global (lon, lat) a la malla del modelo ROMS (lon,lat). 
 %%Después se usa el script FronterasFisicas_2.m
 %%Este scrpit se corre y está probado en Matlab.
 %%Elaborado por: Gabriela Reséndiz C. contacto: resendizg@cicese.edu.mx
