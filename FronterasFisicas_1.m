@@ -10,8 +10,9 @@ clear all
 %%Si detectas alguna falla o tienes alguna mejora no dudes en hacermelo saber :)
 
 
-ruta_modeloglobal=input('Ruta de los archivos del modelo global: ');
-ruta_modeloROMS=input('Ruta de la malla del ROMS: ');
+ruta_modeloglobal=input('Ruta de los archivos del modelo global: ')
+ruta_modeloROMS=input('Ruta de la malla del ROMS: ')
+malla=input('Nombre de la malla del ROMS:)
 X1=input('Longitud min:')
 X2=input('Longitud max:')
 Y1=input('Latitud min:')
