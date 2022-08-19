@@ -1,11 +1,13 @@
 
+##  Codigo en proceso.
+##Depende del codigo de mapeo objetivo de barnes: Original, 10-Aug-09, S. Pierce, % Bug fix, 8-Sep-10, Carlos Carrillo 
 
-cd '/media/gabriela/WDBlue_2/Modelo_NGC/DATOS_MODELOFISICO'
+cd (ruta_modeloglobal)
 
-for anioo=2021
+for anioo=anio1:anio2
 
 
-addpath ('/media/gabriela/DATOS_RESENDIZ1/MODELO_ALTOGOLFO')
+addpath (ruta_modeloROMS)
 
 angle=ncread('ROMS_ETOPO1_Regional.nc','angle');
 lon_rho=ncread('ROMS_ETOPO1_Regional.nc','lon_rho');
